@@ -27,12 +27,12 @@ const Map = ({ children, className, ...rest }) => {
       iconUrl: iconMarker.src,
       shadowUrl: iconMarkerShadow.src
     })
-  }, []);
+  }, [])
 
   return (
     <MapContainer className={mapClassName} {...rest}>
       <MapConsumer>
-        {(map) => children(ReactLeaflet, map) }
+        {(map) => children(ReactLeaflet, map)}
       </MapConsumer>
     </MapContainer>
   )

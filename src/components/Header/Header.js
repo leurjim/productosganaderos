@@ -18,34 +18,21 @@ const Header = () => {
       <Container className={styles.headerContainer}>
         <p className={styles.headerTitle}>
           <Link href="/">
-            <a>Space Jelly</a>
+            <a>Productos Ganaderos</a>
           </Link>
         </p>
         <ul className={styles.headerLinks}>
           <li>
-            <Link href="/categories/apparel">
-              <a>Apparel</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/categories/accessories">
-              <a>Accessories</a>
+            <Link href="/categories/productos">
+              <a>Productos</a>
             </Link>
           </li>
           <li>
             <Link href="/stores">
-              <a>Find a Store</a>
+              <a>Contáctenos</a>
             </Link>
           </li>
         </ul>
-        <p className={styles.headerCart}>
-          <button className="snipcart-checkout">
-            <FaShoppingCart />
-            <span>
-              ${ cart.subtotal?.toFixed(2) }
-            </span>
-          </button>
-        </p>
         <ul className={styles.headerLocales}>
           {availableLocales.map(locale => {
             return (

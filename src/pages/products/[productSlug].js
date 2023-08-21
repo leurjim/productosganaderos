@@ -33,19 +33,7 @@ export default function Product({ product }) {
               __html: product.description?.html
             }} />
             <p className={styles.productPrice}>
-              ${ product.price }
-            </p>
-            <p className={styles.productBuy}>
-              <Button
-                className="snipcart-add-item"
-                data-item-id={product.id}
-                data-item-price={product.price}
-                data-item-url={`/products/${product.slug}`}
-                data-item-image={product.image.url}
-                data-item-name={product.name}
-              >
-                Add to Cart
-              </Button>
+              S/{ product.price }
             </p>
           </div>
         </div>
@@ -56,13 +44,13 @@ export default function Product({ product }) {
 
 export async function getStaticProps({ params, locale }) {
   const client = new ApolloClient({
-    uri: 'https://api-us-east-1.graphcms.com/v2/ckzvrda212z1d01za7m8y55rc/master',
-    cache: new InMemoryCache()
+    uri: 'https://api-sa-east-1.hygraph.com/v2/clhosnmjx69z101um63w459u3/master',
+    cache: new InMemoryCache(),
   });
 
   const data = await client.query({
     query: gql`
-      query PageProduct($slug: String, $locale: Locale!) {
+      query pageProduct($slug: String, $locale: Locale!) {
         product(where: {slug: $slug}) {
           id
           image
@@ -105,8 +93,8 @@ export async function getStaticProps({ params, locale }) {
 
 export async function getStaticPaths({ locales }) {
   const client = new ApolloClient({
-    uri: 'https://api-us-east-1.graphcms.com/v2/ckzvrda212z1d01za7m8y55rc/master',
-    cache: new InMemoryCache()
+    uri: 'https://api-sa-east-1.hygraph.com/v2/clhosnmjx69z101um63w459u3/master',
+    cache: new InMemoryCache(),
   });
 
   const data = await client.query({
@@ -119,9 +107,8 @@ export async function getStaticPaths({ locales }) {
           image
         }
       }
-
     `
-  });
+  })
 
   const paths = data.data.products.map(product => {
     return {
@@ -130,7 +117,7 @@ export async function getStaticPaths({ locales }) {
       }
     }
   })
-
+  
   return {
     paths: [
       ...paths,

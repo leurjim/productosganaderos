@@ -1,10 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link';
-import {
-  ApolloClient,
-  InMemoryCache,
-  gql
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 import { buildImage } from '@lib/cloudinary';
 
@@ -21,12 +17,12 @@ export default function Home({ home, products }) {
   return (
     <Layout>
       <Head>
-        <title>Space Jelly Gear</title>
+        <title>Instrumentos para Ganadería</title>
         <meta name="description" content="Get your Space Jelly gear!" />
       </Head>
 
       <Container>
-        <h1 className="sr-only">Space Jelly Gear</h1>
+        <h1 className="sr-only">Productos Ganaderos</h1>
 
         <div className={styles.hero}>
           <Link href={heroLink}>
@@ -40,7 +36,7 @@ export default function Home({ home, products }) {
           </Link>
         </div>
 
-        <h2 className={styles.heading}>Featured Gear</h2>
+        <h2 className={styles.heading}>Productos Destacados</h2>
 
         <ul className={styles.products}>
           {products.map(product => {
@@ -56,22 +52,10 @@ export default function Home({ home, products }) {
                       { product.name }
                     </h3>
                     <p className={styles.productPrice}>
-                      ${ product.price }
+                      S/{ product.price }
                     </p>
                   </a>
                 </Link>
-                <p>
-                <Button
-                  className="snipcart-add-item"
-                  data-item-id={product.id}
-                  data-item-price={product.price}
-                  data-item-url={`/products/${product.slug}`}
-                  data-item-image={product.image.url}
-                  data-item-name={product.name}
-                >
-                  Add to Cart
-                </Button>
-                </p>
               </li>
             )
           })}
@@ -82,9 +66,10 @@ export default function Home({ home, products }) {
 }
 
 export async function getStaticProps({ locale }) {
+  console.log('locale', locale);
   const client = new ApolloClient({
-    uri: 'https://api-us-east-1.graphcms.com/v2/ckzvrda212z1d01za7m8y55rc/master',
-    cache: new InMemoryCache()
+    uri: 'https://api-sa-east-1.hygraph.com/v2/clhosnmjx69z101um63w459u3/master',
+    cache: new InMemoryCache(),
   });
 
   const data = await client.query({
@@ -104,7 +89,7 @@ export async function getStaticProps({ locale }) {
             locale
           }
         }
-        products(where: {categories_some: {slug: "featured"}}) {
+        products(first: 4) {
           id
           name
           price
@@ -126,7 +111,7 @@ export async function getStaticProps({ locale }) {
       ...home.localizations[0]
     }
   }
-
+  
   const products = data.data.products;
 
   return {
