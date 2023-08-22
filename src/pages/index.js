@@ -4,8 +4,6 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 import { buildImage } from '@lib/cloudinary';
 
-import Image from 'next/image'
-
 import Layout from '@components/Layout';
 import Container from '@components/Container';
 import Button from '@components/Button';
@@ -33,7 +31,7 @@ export default function Home({ home, products }) {
                 <h2>{ heroTitle }</h2>
                 <p>{ heroText }</p>
               </div>
-              <Image className={styles.heroImage} width={heroBackground.width} height={heroBackground.height} src={buildImage(heroBackground.public_id).toURL()} alt="" />
+              <img className={styles.heroImage} width={heroBackground.width} height={heroBackground.height} src={buildImage(heroBackground.public_id).toURL()} alt="" />
             </a>
           </Link>
         </div>
@@ -48,7 +46,7 @@ export default function Home({ home, products }) {
                 <Link href={`/products/${product.slug}`}>
                   <a>
                     <div className={styles.productImage}>
-                      <Image width={product.image.width} height={product.image.height} src={imageUrl} alt="" />
+                      <img width={product.image.width} height={product.image.height} src={imageUrl} alt="" />
                     </div>
                     <h3 className={styles.productTitle}>
                       { product.name }

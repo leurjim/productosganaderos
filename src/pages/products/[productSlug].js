@@ -7,8 +7,6 @@ import {
 
 import { buildImage } from '@lib/cloudinary';
 
-import Image from 'next/image'
-
 import Layout from '@components/Layout';
 import Header from '@components/Header';
 import Container from '@components/Container';
@@ -27,7 +25,7 @@ export default function Product({ product }) {
       <Container>
         <div className={styles.productWrapper}>
           <div className={styles.productImage}>
-            <Image width={product.image.width} height={product.image.height} src={buildImage(product.image.public_id).toURL()} alt="" />
+            <img width={product.image.width} height={product.image.height} src={buildImage(product.image.public_id).toURL()} alt="" />
           </div>
           <div className={styles.productContent}>
             <h1>{ product.name }</h1>

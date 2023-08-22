@@ -8,7 +8,6 @@ import {
 
 import { buildImage } from '@lib/cloudinary';
 
-import Image from 'next/image'
 import Layout from '@components/Layout';
 import Header from '@components/Header';
 import Container from '@components/Container';
@@ -35,7 +34,7 @@ export default function Category({ category, products }) {
                 <Link href={`/products/${product.slug}`}>
                   <a>
                     <div className={styles.productImage}>
-                    <Image width="900" height="900" src={imageUrl} alt="" />
+                    <img width="900" height="900" src={imageUrl} alt="" />
                     </div>
                     <h3 className={styles.productTitle}>
                       { product.name }
