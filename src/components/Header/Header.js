@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSnipcart } from 'use-snipcart';
+
 import { FaShoppingCart } from 'react-icons/fa';
 
 import Container from '@components/Container';
@@ -9,7 +9,6 @@ import styles from './Header.module.scss';
 
 const Header = () => {
   const { locale: activeLocale, locales, asPath } = useRouter();
-  const { cart = {} } = useSnipcart();
 
   const availableLocales = locales.filter(locale => locale !== activeLocale);
 

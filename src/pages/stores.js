@@ -115,7 +115,7 @@ export default function Stores({ stroeLocations }) {
                         {stroeLocations.map(location => {
                           const { latitude, longitude } = location.localizacion;
                           return (
-                            <Marker position={[latitude, longitude]}>
+                            <Marker key={location.id} position={[latitude, longitude]}>
                               <Popup>
                                 <p>{ location.name }</p>
                                 <p>{ location.direccion }</p>
